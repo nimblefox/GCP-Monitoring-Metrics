@@ -30,15 +30,15 @@ resource "google_cloud_scheduler_job" "scheduler" {
 }
 
 resource "google_bigquery_dataset" "metrics_dataset" {
-  dataset_id  = "metrics-dataset"
-  description = "This dataset has tables of monitoring metrics"
-  project     = var.gcp_project_id
+  dataset_id          = "metrics-dataset"
+  description         = "This dataset has tables of monitoring metrics"
+  project             = var.gcp_project_id
   deletion_protection = false
 }
 
 resource "google_bigquery_table" "metrics_table" {
-  dataset_id = google_bigquery_dataset.metrics_dataset.dataset_id
-  table_id   = "metrics-table"
+  dataset_id          = google_bigquery_dataset.metrics_dataset.dataset_id
+  table_id            = "metrics-table"
   deletion_protection = false
   time_partitioning {
     type = "DAY"
