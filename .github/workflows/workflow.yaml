@@ -1,0 +1,39 @@
+name: 'Terraform and Lint CI'
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terrafrom Init
+      run: terraform init
+      env:
+        GOOGLE_CREDENTAILS: ${{secrets.GOOGLE_CREDENTIALS}}
+
+    - name: Terrafrom Format
+      run: terraform fmt -check
+
+    - name: Terrafrom Plan
+      run: terraform plan
+      env:
+        GOOGLE_CREDENTAILS: ${{secrets.GOOGLE_CREDENTIALS}}
+
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform apply -auto-approve
+      env:
+        GOOGLE_CREDENTAILS: ${{secrets.GOOGLE_CREDENTIALS}}
+
