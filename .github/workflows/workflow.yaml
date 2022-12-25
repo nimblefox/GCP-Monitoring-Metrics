@@ -33,6 +33,7 @@ jobs:
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
         
   terraform:
+    needs: build-push-gcr
     name: 'Terraform'
     runs-on: ubuntu-latest
 
