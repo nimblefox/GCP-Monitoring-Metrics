@@ -6,9 +6,6 @@ on:
     - main
   pull_request:
 
-env:
-  GOOGLE_APPLICATION_CREDENTIALS = ${{secrets.GOOGLE_CREDENTIALS}}
-
 jobs:
   terraform:
     name: 'Terraform'
