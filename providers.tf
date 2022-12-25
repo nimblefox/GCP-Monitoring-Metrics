@@ -3,7 +3,7 @@ terraform {
   backend "gcs" {
     bucket      = "gh_actions_backend"
     prefix      = "terraform/state"
-    #credentials = "./SAcreds.json"
+    credentials = "./SAcreds.json"
   }
   required_providers {
     google = {
