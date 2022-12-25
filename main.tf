@@ -1,5 +1,5 @@
 resource "google_cloud_run_service" "metrics_exporter" {
-  name     = "metrics_exporter"
+  name     = "metrics-exporter"
   location = var.region
   project  = var.gcp_project_id
   template {
@@ -30,14 +30,14 @@ resource "google_cloud_scheduler_job" "scheduler" {
 }
 
 resource "google_bigquery_dataset" "metrics_dataset" {
-  dataset_id  = "metrics_dataset"
+  dataset_id  = "metrics-dataset"
   description = "This dataset has tables of monitoring metrics"
   project     = var.gcp_project_id
 }
 
 resource "google_bigquery_table" "metrics_table" {
   dataset_id = google_bigquery_dataset.metrics_dataset.dataset_id
-  table_id   = "metrics_table"
+  table_id   = "metrics-table"
 
   time_partitioning {
     type = "DAY"
