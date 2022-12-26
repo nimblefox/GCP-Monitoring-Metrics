@@ -5,7 +5,7 @@ resource "google_cloud_run_service" "metrics_exporter" {
   template {
     spec {
       containers {
-        image = "us-docker.pkg.dev/cloudrun/container/hello"
+        image = "gcr.io/silicon-synapse-372206/metrics-exporter@sha256:a8712a1100ca96714fd081a7b110bc5099880ece399566f954dd76a59bdbf0ed"
       }
     }
   }
