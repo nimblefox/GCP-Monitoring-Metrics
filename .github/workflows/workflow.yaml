@@ -1,4 +1,4 @@
-name: Docker and Terraform
+name: Terraform CI
 
 on: [workflow_dispatch]
 
@@ -15,7 +15,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terrafrom Init
-      run: terraform init
+      run: terraform init -reconfigure
       env:
         GOOGLE_CREDENTAILS: ${{secrets.GOOGLE_CREDENTIALS}}
 
