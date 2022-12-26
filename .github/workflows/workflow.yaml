@@ -16,8 +16,6 @@ jobs:
     - uses: google-github-actions/setup-gcloud@main
       with:
         service_account_key: ${{secrets.GOOGLE_CREDENTIALS}}
-        project_id: ${{env.PROJECT_ID}}
-        export_default_credentails: true
 
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
